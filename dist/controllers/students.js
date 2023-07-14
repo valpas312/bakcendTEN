@@ -12,38 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Server = void 0;
-const express_1 = __importDefault(require("express"));
-const config_1 = require("../db/config");
-const studentsR_1 = __importDefault(require("../routes/studentsR"));
-class Server {
-    constructor() {
-        this.app = (0, express_1.default)();
-        this.connect();
-        this.middlewares();
-        this.routes();
-    }
-    ;
-    connect() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield (0, config_1.connect)();
-        });
-    }
-    ;
-    middlewares() {
-        this.app.use(express_1.default.json());
-    }
-    ;
-    routes() {
-        this.app.use("/api", studentsR_1.default);
-    }
-    ;
-    listen() {
-        this.app.listen(8080, () => {
-            console.log(">>> Server on port 8080");
-        });
-    }
-    ;
-}
-exports.Server = Server;
-;
+exports.createStudent = void 0;
+const student_1 = __importDefault(require("../models/student"));
+const createStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = req.body;
+    const newStudent = new student_1.default(data);
+    yield newStudent.save();
+    res.json(newStudent);
+});
+exports.createStudent = createStudent;

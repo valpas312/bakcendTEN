@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import { connect } from "../db/config";
+import studentsR from "../routes/studentsR";
 
 export class Server {
     app: Express;
@@ -8,6 +9,7 @@ export class Server {
         this.app = express();
         this.connect();
         this.middlewares();
+        this.routes();
     };
 
     async connect(): Promise<void> {
@@ -16,6 +18,10 @@ export class Server {
 
     middlewares(): void {
         this.app.use(express.json());
+    };
+
+    routes(): void {
+        this.app.use("/api", studentsR);
     };
 
     listen(): void {
