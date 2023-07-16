@@ -1,14 +1,14 @@
 import {Model, Schema, model} from "mongoose";
 
-export interface IStudent {
+export interface IGasto {
     dni: number;
     nombre: string;
-    camada: number;
     email: string;
-    estado: boolean;
+    concepto: string;
+    gasto: number;
 };
 
-const studentSchema = new Schema<IStudent>({
+const gastoSchema = new Schema<IGasto>({
     dni: {
         type: Number,
         required: true,
@@ -18,21 +18,20 @@ const studentSchema = new Schema<IStudent>({
         type: String,
         required: true
     },
-    camada: {
-        type: Number,
-        required: true
-    },
     email: {
         type: String,
         required: true
     },
-    estado: {
-        type: Boolean,
-        required: true,
-        default: true
+    concepto: {
+        type: String,
+        required: true
+    },
+    gasto: {
+        type: Number,
+        required: true
     }
 });
 
-const Student: Model<IStudent> = model<IStudent>("Student", studentSchema);
+const Gasto: Model<IGasto> = model<IGasto>("Gasto", gastoSchema);
 
-export default Student;
+export default Gasto;

@@ -13,22 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGastoDeUsuario = exports.getGastos = exports.createGasto = void 0;
-const student_1 = __importDefault(require("../models/student"));
+const gasto_1 = __importDefault(require("../models/gasto"));
 const createGasto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
-    const newGasto = new student_1.default(data);
+    const newGasto = new gasto_1.default(data);
     yield newGasto.save();
     res.json(newGasto);
 });
 exports.createGasto = createGasto;
 const getGastos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const students = yield student_1.default.find();
+    const students = yield gasto_1.default.find();
     res.json(students);
 });
 exports.getGastos = getGastos;
 const getGastoDeUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { dni } = req.params;
-    const gasto = yield student_1.default.findOne({ dni });
+    const gasto = yield gasto_1.default.findOne({ dni });
     res.json(gasto);
 });
 exports.getGastoDeUsuario = getGastoDeUsuario;

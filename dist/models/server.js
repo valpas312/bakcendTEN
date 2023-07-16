@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
 const config_1 = require("../db/config");
-const studentsR_1 = __importDefault(require("../routes/studentsR"));
+const gastosR_1 = __importDefault(require("../routes/gastosR"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -35,7 +35,7 @@ class Server {
     }
     ;
     routes() {
-        this.app.use("/api", studentsR_1.default);
+        this.app.use("/api", gastosR_1.default);
     }
     ;
     listen() {

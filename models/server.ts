@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import { connect } from "../db/config";
-import studentsR from "../routes/studentsR";
+import gastosR from "../routes/gastosR";
 
 export class Server {
     app: Express;
@@ -21,7 +21,7 @@ export class Server {
     };
 
     routes(): void {
-        this.app.use("/api", studentsR);
+        this.app.use("/api", gastosR);
     };
 
     listen(): void {
