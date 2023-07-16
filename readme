@@ -1,0 +1,8 @@
+RUTAS:
+
+GET:
+http://localhost:8080/api/
+http://localhost:8080/api/{dni}
+
+POST:
+http://localhost:8080/api/
