@@ -23,12 +23,18 @@ const createGasto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.createGasto = createGasto;
 const getGastos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const students = yield gasto_1.default.find();
+    if (students.length === 0) {
+        return res.status(404).json({ msg: "No hay gastos" });
+    }
     res.json(students);
 });
 exports.getGastos = getGastos;
 const getGastoDeUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { dni } = req.params;
     const gasto = yield gasto_1.default.findOne({ dni });
+    if (!gasto) {
+        return res.status(404).json({ msg: "No hay gastos para ese usuario" });
+    }
     res.json(gasto);
 });
 exports.getGastoDeUsuario = getGastoDeUsuario;
